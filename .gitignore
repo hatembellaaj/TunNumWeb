@@ -1,0 +1,6 @@
+sadtalker_env/
+SadTalker/
+resultats/
+__pycache__/
+*.pyc
+.DS_Store

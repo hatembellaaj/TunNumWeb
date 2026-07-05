@@ -1,0 +1,7 @@
+services:
+  mdgroupe-ia-web:
+    build: .
+    container_name: mdgroupe-ia-web
+    ports:
+      - "8093:8093"
+    restart: unless-stopped

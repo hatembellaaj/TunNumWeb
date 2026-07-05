@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>md.Groupe — L'IA opérationnelle, pas l'IA promise</title>
+<meta name="description" content="md.Groupe accompagne les entreprises tunisiennes dans le passage à l'IA en production : conseil & MOA augmentée, agents IA métier, automatisation & RPA, média & audience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F7F5;
+  --paper-2:#EDEFEA;
+  --ink:#0F1722;
+  --ink-soft:#3C4655;
+  --cobalt:#1742E8;
+  --cobalt-deep:#0F2FB0;
+  --live:#13A878;
+  --line:#D8DCD4;
+  --line-ink:rgba(15,23,34,.12);
+  --radius:14px;
+  --maxw:1180px;
+  --display:'Sora',sans-serif;
+  --body:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--cobalt);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- utilities ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--cobalt);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--cobalt);display:inline-block}
+.eyebrow.inverse{color:#8FA6FF}
+.eyebrow.inverse::before{background:#8FA6FF}
+h1,h2,h3{font-family:var(--display);line-height:1.12;letter-spacing:-.022em}
+h2{font-size:clamp(30px,4.2vw,46px);font-weight:700}
+.section{padding:104px 0}
+.section-head{max-width:720px;margin-bottom:56px}
+.section-head p{margin-top:18px;color:var(--ink-soft);font-size:18px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:600;font-size:15.5px;
+  padding:15px 26px;border-radius:999px;border:1.5px solid transparent;
+  cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+.btn-primary{background:var(--cobalt);color:#fff}
+.btn-primary:hover{background:var(--cobalt-deep);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--cobalt-deep)}
+.btn-light:hover{transform:translateY(-2px)}
+.arrow{transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ---------- nav ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,247,245,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:baseline;gap:1px;font-size:21px}
+.logo .md{font-family:var(--mono);font-weight:600;color:var(--cobalt)}
+.logo .grp{font-family:var(--display);font-weight:700}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang-toggle{
+  display:flex;border:1.5px solid var(--line-ink);border-radius:999px;overflow:hidden;
+  font-family:var(--mono);font-size:12.5px;font-weight:600;
+}
+.lang-toggle button{
+  border:none;background:transparent;padding:7px 13px;cursor:pointer;
+  color:var(--ink-soft);font:inherit;transition:background .15s,color .15s;
+}
+.lang-toggle button.active{background:var(--ink);color:#fff}
+.lang-toggle button:focus-visible{outline:2px solid var(--cobalt);outline-offset:-2px}
+.nav .btn{padding:11px 20px;font-size:14px}
+.burger{display:none;border:none;background:none;cursor:pointer;padding:8px}
+.burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:.2s}
+.mobile-menu{display:none;flex-direction:column;gap:4px;padding:10px 28px 22px;border-top:1px solid var(--line);background:var(--paper)}
+.mobile-menu a{padding:11px 0;font-weight:500;border-bottom:1px solid var(--line)}
+.mobile-menu.open{display:flex}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(40px,5.4vw,66px);font-weight:800;margin:22px 0 24px}
+.hero h1 .accent{color:var(--cobalt);position:relative;white-space:nowrap}
+.hero h1 .accent::after{
+  content:"";position:absolute;left:0;bottom:.04em;height:.09em;width:100%;
+  background:var(--cobalt);opacity:.22;border-radius:2px;
+}
+.hero-sub{font-size:19px;color:var(--ink-soft);max-width:520px;margin-bottom:36px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-note{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+.hero-note b{color:var(--ink)}
+
+/* console — signature element */
+.console{
+  background:#fff;
+  border:1.5px solid var(--line-ink);
+  border-radius:var(--radius);
+  box-shadow:0 24px 60px -28px rgba(15,23,34,.28), 0 2px 0 0 rgba(15,23,34,.04);
+  overflow:hidden;
+  transform:rotate(.4deg);
+}
+.console-bar{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 18px;border-bottom:1px solid var(--line-ink);
+  background:linear-gradient(180deg,#FBFCFA,#F2F4F0);
+}
+.dot{width:10px;height:10px;border-radius:50%;background:#D9DDD5}
+.console-title{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:6px;letter-spacing:.04em}
+.console-live{
+  margin-left:auto;display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--live);
+}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--live);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(19,168,120,.45)}70%{box-shadow:0 0 0 9px rgba(19,168,120,0)}100%{box-shadow:0 0 0 0 rgba(19,168,120,0)}}
+.console-body{
+  font-family:var(--mono);font-size:13px;line-height:1.5;
+  padding:20px 22px;height:312px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.log-line{display:flex;gap:14px;padding:6.5px 0;border-bottom:1px dashed rgba(15,23,34,.07);opacity:0;animation:logIn .5s ease forwards}
+@keyframes logIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.log-time{color:#9AA3AF;flex-shrink:0}
+.log-tag{color:var(--cobalt);font-weight:600;flex-shrink:0;min-width:128px}
+.log-msg{color:var(--ink-soft)}
+.log-ok{color:var(--live);font-weight:600;margin-left:auto;flex-shrink:0}
+.console-foot{
+  padding:13px 22px;border-top:1px solid var(--line-ink);
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);
+  display:flex;justify-content:space-between;background:#FBFCFA;
+}
+
+/* ---------- logos ---------- */
+.logos{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;background:var(--paper-2)}
+.logos-inner{display:flex;align-items:center;gap:18px}
+.logos-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);flex-shrink:0;padding-right:18px;border-right:1px solid var(--line)}
+.marquee{overflow:hidden;flex:1;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:54px;width:max-content;animation:scroll 36s linear infinite}
+.marquee-track span{font-family:var(--display);font-weight:600;font-size:16px;color:var(--ink-soft);white-space:nowrap;opacity:.75}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- constat (inverse) ---------- */
+.constat{background:var(--ink);color:#EDEFF3;padding:120px 0}
+.constat h2{font-size:clamp(32px,4.8vw,56px);max-width:880px;margin-top:24px;font-weight:700}
+.constat h2 .strike{position:relative;color:#6B7686}
+.constat h2 .strike::after{content:"";position:absolute;left:-2%;top:54%;width:104%;height:3px;background:#6B7686;transform:rotate(-1.6deg)}
+.constat h2 .em{color:#fff;border-bottom:4px solid var(--cobalt)}
+.constat p{max-width:680px;margin-top:30px;color:#A9B2C0;font-size:18.5px}
+.constat strong{color:#fff;font-weight:600}
+
+/* ---------- offres ---------- */
+.offres-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.offre{
+  background:#fff;border:1.5px solid var(--line-ink);border-radius:var(--radius);
+  padding:36px 34px;display:flex;flex-direction:column;gap:16px;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.offre:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.25);border-color:rgba(23,66,232,.4)}
+.offre-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt)}
+.offre h3{font-size:23px;font-weight:700}
+.offre p{color:var(--ink-soft);font-size:16px}
+.offre ul{list-style:none;margin-top:4px}
+.offre li{
+  font-size:15px;color:var(--ink-soft);padding:9px 0 9px 26px;position:relative;
+  border-top:1px dashed rgba(15,23,34,.1);
+}
+.offre li::before{content:"→";position:absolute;left:0;color:var(--cobalt);font-family:var(--mono);font-weight:600}
+.offre-proof{
+  margin-top:auto;padding:13px 16px;border-radius:10px;background:var(--paper-2);
+  font-size:14px;color:var(--ink-soft);border-left:3px solid var(--live);
+}
+.offre-proof b{color:var(--ink)}
+
+/* ---------- méthode ---------- */
+.methode{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:flex;flex-direction:column}
+.step{
+  display:grid;grid-template-columns:130px 1fr 1.4fr;gap:34px;align-items:baseline;
+  padding:38px 0;border-top:1px solid var(--line-ink);
+}
+.step:last-child{border-bottom:1px solid var(--line-ink)}
+.step-num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--cobalt)}
+.step h3{font-size:24px;font-weight:700}
+.step p{color:var(--ink-soft);font-size:16.5px}
+
+/* ---------- cas ---------- */
+.cas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cas{
+  background:#fff;border:1.5px solid var(--line-ink);border-radius:var(--radius);
+  padding:32px 30px;display:flex;flex-direction:column;gap:14px;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.cas:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.22)}
+.cas-client{font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.cas h3{font-size:20px;font-weight:700}
+.cas p{color:var(--ink-soft);font-size:15px;flex:1}
+.cas-badge{
+  align-self:flex-start;font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.1em;padding:6px 12px;border-radius:999px;
+}
+.badge-live{background:rgba(19,168,120,.12);color:#0C8A61}
+.badge-done{background:rgba(23,66,232,.1);color:var(--cobalt-deep)}
+.refs{margin-top:48px;padding-top:32px;border-top:1px solid var(--line)}
+.refs-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.refs-list{display:flex;flex-wrap:wrap;gap:12px 32px}
+.refs-list span{font-family:var(--display);font-weight:600;font-size:16px;color:var(--ink-soft);opacity:.8}
+
+/* ---------- démos vidéo ---------- */
+.demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:8px}
+.demo{
+  background:#fff;border:1.5px solid var(--line-ink);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.demo:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.22)}
+.demo-media{position:relative;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.demo-media video{width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:var(--ink)}
+.demo-media .cas-badge{position:absolute;bottom:12px;left:12px;z-index:2}
+.demo-body{padding:28px 30px 30px;display:flex;flex-direction:column;gap:12px;flex:1}
+.demo-body h3{font-size:21px;font-weight:700}
+.demo-body p{color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- secteurs ---------- */
+.secteurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.secteur{
+  border:1.5px solid var(--line-ink);border-radius:var(--radius);padding:26px 26px;
+  background:#fff;transition:border-color .2s ease,transform .2s ease;
+}
+.secteur:hover{border-color:rgba(23,66,232,.45);transform:translateY(-3px)}
+.secteur h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.secteur p{font-size:14.5px;color:var(--ink-soft)}
+
+/* ---------- groupe ---------- */
+.groupe-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
+.pole{
+  border-radius:var(--radius);padding:42px 38px;display:flex;flex-direction:column;gap:16px;min-height:300px;
+}
+.pole-web{background:var(--ink);color:#EDEFF3}
+.pole-web p{color:#A9B2C0}
+.pole-tn{background:#fff;border:1.5px solid var(--line-ink)}
+.pole-tn p{color:var(--ink-soft)}
+.pole-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.pole-web .pole-tag{color:#8FA6FF}
+.pole-tn .pole-tag{color:var(--cobalt)}
+.pole h3{font-size:27px;font-weight:700}
+.pole p{font-size:16px}
+.lab-link{
+  margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--cobalt);
+  display:inline-flex;gap:8px;align-items:center;
+}
+.pole-web .lab-link{color:#8FA6FF}
+.conviction{
+  margin-top:22px;padding:34px 38px;border-radius:var(--radius);
+  background:var(--paper-2);border:1px dashed rgba(15,23,34,.2);
+  font-size:18px;max-width:100%;
+}
+.conviction b{font-family:var(--display)}
+
+/* ---------- cta ---------- */
+.cta{background:var(--cobalt);color:#fff;padding:110px 0;position:relative;overflow:hidden}
+.cta::before{
+  content:"";position:absolute;inset:0;opacity:.14;
+  background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
+  background-size:26px 26px;
+}
+.cta .wrap{position:relative}
+.cta h2{font-size:clamp(32px,4.6vw,52px);max-width:760px}
+.cta p{margin:22px 0 38px;font-size:18.5px;max-width:640px;color:rgba(255,255,255,.85)}
+.cta-meta{margin-top:28px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.75)}
+
+/* ---------- footer ---------- */
+footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-grid h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6B7686;margin-bottom:16px;font-weight:600}
+.footer-grid a,.footer-grid p{display:block;font-size:14.5px;padding:4px 0;color:#A9B2C0}
+.footer-grid a:hover{color:#fff}
+.footer-logo{font-size:22px;margin-bottom:12px;display:flex;gap:1px;align-items:baseline}
+.footer-logo .md{font-family:var(--mono);font-weight:600;color:#8FA6FF}
+.footer-logo .grp{font-family:var(--display);font-weight:700;color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#6B7686;flex-wrap:wrap;gap:10px}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .offres-grid,.groupe-grid,.demo-grid{grid-template-columns:1fr}
+  .cas-grid,.secteurs-grid{grid-template-columns:1fr 1fr}
+  .step{grid-template-columns:70px 1fr;gap:18px}
+  .step p{grid-column:2}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:880px){
+  .nav-links{display:none}
+  .burger{display:block}
+}
+@media(max-width:620px){
+  .cas-grid,.secteurs-grid{grid-template-columns:1fr}
+  .section{padding:76px 0}
+  .hero{padding:64px 0 70px}
+  .logos-inner{flex-direction:column;align-items:flex-start}
+  .logos-label{border:none;padding:0 0 6px}
+  .console{transform:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="md.Groupe — accueil"><span class="md">md.</span><span class="grp">Groupe</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#offres" data-en="Services">Offres</a>
+      <a href="#methode" data-en="Method">Méthode</a>
+      <a href="#cas" data-en="Case studies">Réalisations</a>
+      <a href="#demos" data-en="Demos">Démos</a>
+      <a href="#groupe" data-en="The group">Le groupe</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Langue">
+        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-primary" data-en="AI assessment">Diagnostic IA</a>
+      <button class="burger" aria-label="Menu" onclick="document.getElementById('mmenu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mmenu" aria-label="Menu mobile">
+    <a href="#offres" data-en="Services">Offres</a>
+    <a href="#methode" data-en="Method">Méthode</a>
+    <a href="#cas" data-en="Case studies">Réalisations</a>
+    <a href="#demos" data-en="Demos">Démos</a>
+    <a href="#groupe" data-en="The group">Le groupe</a>
+    <a href="#contact" data-en="Request an AI assessment">Demander un diagnostic IA</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" data-en="AI integrator — Tunis">Intégrateur IA — Tunis</span>
+      <h1 data-en='Operational AI.<br>Not <span class="accent">promised</span> AI.'>L'IA <span class="accent">opérationnelle</span>,<br>pas l'IA promise.</h1>
+      <p class="hero-sub" data-en="md.Groupe takes Tunisian and Maghreb companies from AI ambition to AI in production: scoping, integration, automation. We don't sell technology — we deliver processes that run.">md.Groupe fait passer les entreprises tunisiennes et maghrébines de l'ambition IA à l'IA en production : cadrage, intégration, automatisation. Nous ne vendons pas de la technologie — nous livrons des processus qui tournent.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary"><span data-en="Request an AI assessment">Demander un diagnostic IA</span> <span class="arrow">→</span></a>
+        <a href="#cas" class="btn btn-ghost" data-en="See what runs in production">Voir ce qui tourne en production</a>
+      </div>
+      <p class="hero-note" data-en="<b>We use what we sell.</b> Every solution runs first on our own operations."><b>Nous utilisons ce que nous vendons.</b> Chaque solution tourne d'abord sur nos propres opérations.</p>
+    </div>
+
+    <!-- signature : console de production -->
+    <div class="console" role="img" aria-label="Console montrant les automatisations md.Groupe en production">
+      <div class="console-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="console-title">production · md.groupe / tunisienumerique.com</span>
+        <span class="console-live"><span class="pulse"></span><span data-en="LIVE">EN PROD</span></span>
+      </div>
+      <div class="console-body" id="console-body"></div>
+      <div class="console-foot">
+        <span data-en="uptime 99.9% · human supervision: editorial">uptime 99,9 % · supervision humaine : éditoriale</span>
+        <span>n8n · claude api · aws ses · gam</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOGOS ================= -->
+<div class="logos">
+  <div class="wrap logos-inner">
+    <span class="logos-label" data-en="They trust us">Ils nous font confiance</span>
+    <div class="marquee">
+      <div class="marquee-track" id="marquee-track">
+        <span>Ooredoo</span><span>Tunisie Telecom</span><span>Vermeg</span><span>Samsung</span><span>SICAM</span><span>Nouvelair</span><span>Rose Blanche Group</span><span>BTL</span><span>OMS</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONSTAT ================= -->
+<section class="constat">
+  <div class="wrap reveal">
+    <span class="eyebrow inverse" data-en="The shift">Le constat</span>
+    <h2 data-en='<span class="strike">Code</span> is no longer where the value is. <span class="em">Rigorous scoping</span> is.'>Le <span class="strike">code</span> ne vaut plus ce qu'il valait. <span class="em">Le cadrage</span>, si.</h2>
+    <p data-en="AI has collapsed the cost of producing software. What makes the difference now is no longer the ability to develop — it's the ability to <strong>identify the right processes</strong>, specify them rigorously, <strong>integrate AI into an existing information system</strong>, and guarantee a result that is reliable, auditable and compliant. That is exactly what md.Groupe does.">L'IA a fait chuter le coût de production logicielle. Ce qui fait désormais la différence, ce n'est plus la capacité à développer — c'est la capacité à <strong>identifier les bons processus</strong>, à les spécifier rigoureusement, à <strong>intégrer l'IA dans un système d'information existant</strong>, et à garantir un résultat fiable, auditable et conforme. C'est exactement ce que fait md.Groupe.</p>
+  </div>
+</section>
+
+<!-- ================= OFFRES ================= -->
+<section class="section" id="offres">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Services">Nos offres</span>
+      <h2 data-en="Four ways to put AI to work">Quatre façons de mettre l'IA au travail</h2>
+      <p data-en="From first assessment to systems running in production — each engagement is scoped, measured, and built to be owned by your teams.">Du premier diagnostic aux systèmes en production — chaque mission est cadrée, mesurée, et conçue pour être appropriée par vos équipes.</p>
+    </div>
+    <div class="offres-grid">
+
+      <article class="offre reveal">
+        <span class="offre-tag" data-en="01 · Advisory">01 · Conseil</span>
+        <h3 data-en="AI-augmented advisory & project ownership">Conseil & MOA augmentée IA</h3>
+        <p data-en="For leadership and IT teams who want to move to AI without knowing where to start — or who need a project framed before any build.">Pour les directions qui veulent passer à l'IA sans savoir par où commencer — ou qui ont un projet à cadrer avant tout développement.</p>
+        <ul>
+          <li data-en="AI Opportunity Assessment (2 weeks): use cases, gains, roadmap">Diagnostic IA (2 semaines) : cas d'usage, gains, feuille de route</li>
+          <li data-en="AI specifications: architecture, reliability rules, acceptance criteria">Cahier des charges IA : architecture, règles de fiabilité, critères de recette</li>
+          <li data-en="Delivery oversight, acceptance testing, change management">Pilotage, recette, conduite du changement</li>
+        </ul>
+        <div class="offre-proof" data-en="<b>Our edge:</b> we wrote and executed these specifications for our own systems. We know what breaks in production."><b>Notre différence :</b> nous avons écrit et exécuté ces cahiers des charges pour nos propres systèmes. Nous savons ce qui casse en production.</div>
+      </article>
+
+      <article class="offre reveal">
+        <span class="offre-tag" data-en="02 · Agents">02 · Agents</span>
+        <h3 data-en="Business AI agents">Agents IA métier</h3>
+        <p data-en="Specialized agents embedded in your processes — built with strict anti-hallucination rules and human validation loops.">Des agents spécialisés intégrés à vos processus — conçus avec des règles anti-hallucination strictes et des circuits de validation humaine.</p>
+        <ul>
+          <li data-en="Document processing & synthesis (files, contracts, mail)">Traitement et synthèse documentaire (dossiers, contrats, courriers)</li>
+          <li data-en="Structured content production & automated monitoring">Production de contenu structuré & veille automatisée</li>
+          <li data-en="Full logging, auditability, sovereign hosting available">Journalisation, auditabilité, hébergement souverain possible</li>
+        </ul>
+        <div class="offre-proof" data-en="<b>Proof:</b> our AI journalist agent runs in production on Tunisie Numérique, under human editorial supervision."><b>Preuve :</b> notre agent journaliste IA tourne en production sur Tunisie Numérique, sous supervision éditoriale humaine.</div>
+      </article>
+
+      <article class="offre reveal">
+        <span class="offre-tag" data-en="03 · Automation">03 · Automatisation</span>
+        <h3 data-en="Automation & RPA">Automatisation & RPA</h3>
+        <p data-en="Workflow orchestration, robotic process automation, and connecting the tools you already have.">Orchestration de workflows, robotisation des tâches répétitives, et connexion des outils que vous avez déjà.</p>
+        <ul>
+          <li data-en="n8n orchestration, API integrations, ERP/CRM connections">Orchestration n8n, intégrations API, connexion ERP/CRM</li>
+          <li data-en="Collections follow-ups, automated reporting, multichannel publishing">Relances de recouvrement, reporting automatisé, publication multicanale</li>
+          <li data-en="Per-automation fixed price, or continuous automation contract">Forfait par automatisation, ou contrat d'automatisation continue</li>
+        </ul>
+        <div class="offre-proof" data-en="<b>Proof:</b> our daily newsletter is generated and sent end-to-end with zero human intervention."><b>Preuve :</b> notre newsletter quotidienne est générée et envoyée de bout en bout, sans intervention humaine.</div>
+      </article>
+
+      <article class="offre reveal">
+        <span class="offre-tag" data-en="04 · Media">04 · Média</span>
+        <h3 data-en="Media & audience — Tunisie Numérique">Média & audience — Tunisie Numérique</h3>
+        <p data-en="Reach Tunisians at home and abroad through one of Tunisia's leading digital news outlets.">Touchez les Tunisiens en Tunisie et à l'étranger à travers l'un des premiers médias numériques tunisiens.</p>
+        <ul>
+          <li data-en="Certified audience with a unique diaspora component">Audience certifiée avec une composante diaspora unique</li>
+          <li data-en="Display, audio (web radio, pre-roll) and sponsored video">Display, audio (web radio, pre-roll) et vidéo sponsorisée</li>
+          <li data-en="TN Business: B2B economic intelligence by subscription">TN Business : intelligence économique B2B par abonnement</li>
+        </ul>
+        <div class="offre-proof" data-en="<b>Standard:</b> strict separation between editorial and sponsored content. Always."><b>Standard :</b> séparation stricte entre éditorial et contenu sponsorisé. Toujours.</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHODE ================= -->
+<section class="section methode" id="methode">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Method">Notre méthode</span>
+      <h2 data-en="How we work">Comment nous travaillons</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3 data-en="Assess before building">Diagnostiquer avant de construire</h3>
+        <p data-en="Everything starts with your processes, not the technology. The assessment identifies where AI creates measurable value — and where it doesn't. We will also tell you what NOT to automate.">Tout commence par vos processus, pas par la technologie. Le diagnostic identifie où l'IA crée de la valeur mesurable — et où elle n'en crée pas. Nous vous dirons aussi ce qu'il ne faut PAS automatiser.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3 data-en="Specify as if reliability were everything">Spécifier comme si la fiabilité était tout</h3>
+        <p data-en="Because it is. Every project gets its specification: scope, architecture, reliability rules, validation loops, acceptance criteria. In a company, an AI that fails silently costs more than no AI at all.">Parce que c'est le cas. Chaque projet a son cahier des charges : périmètre, architecture, règles de fiabilité, circuits de validation, critères de recette. En entreprise, une IA qui se trompe silencieusement coûte plus cher que pas d'IA du tout.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3 data-en="Deliver in sprints, prove at every step">Livrer par sprints, prouver à chaque étape</h3>
+        <p data-en="A pilot on a limited scope before any rollout. Success criteria defined in numbers before we start. You decide at every milestone.">Un pilote sur périmètre restreint avant toute généralisation. Des critères de succès chiffrés définis avant de commencer. Vous arbitrez à chaque jalon.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">04</span>
+        <h3 data-en="Transfer, don't lock in">Transférer, pas enfermer</h3>
+        <p data-en="Full documentation, team training, code and workflows that belong to you. Our business model relies on the next project — not on your dependency.">Documentation complète, formation de vos équipes, code et workflows qui vous appartiennent. Notre modèle économique repose sur les projets suivants — pas sur votre dépendance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAS ================= -->
+<section class="section" id="cas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Case studies">Réalisations</span>
+      <h2 data-en="Running in production, not in slides">En production, pas en slides</h2>
+      <p data-en="Detailed case studies (context, solution, measured results) available on request.">Les cas détaillés (contexte, solution, résultats chiffrés) sont disponibles sur demande.</p>
+    </div>
+    <div class="cas-grid">
+      <article class="cas reveal">
+        <span class="cas-badge badge-live" data-en="● IN PRODUCTION">● EN PRODUCTION</span>
+        <span class="cas-client">Tunisie Numérique</span>
+        <h3 data-en="The media outlet as an AI lab">Le média comme laboratoire IA</h3>
+        <p data-en="AI journalist agent (economic & weather data), fully automated daily newsletter, programmatic audio monetization, conditional ad logic by audience segment. Our own operation — our best proof.">Agent journaliste IA (données économiques et météo), newsletter quotidienne entièrement automatisée, monétisation audio programmatique, logique publicitaire conditionnelle par segment d'audience. Notre propre opération — notre meilleure preuve.</p>
+      </article>
+      <article class="cas reveal">
+        <span class="cas-badge badge-done" data-en="DELIVERED">LIVRÉ</span>
+        <span class="cas-client">Rose Blanche Group</span>
+        <h3 data-en="Industrialized editorial production">Production éditoriale industrialisée</h3>
+        <p data-en="A corporate event turned into a complete multi-document editorial package, with production time and cost cut by an AI-assisted, human-supervised pipeline.">Un événement d'entreprise transformé en package éditorial complet multi-documents, avec un délai et un coût de production réduits par une chaîne assistée par IA, supervisée par l'humain.</p>
+      </article>
+      <article class="cas reveal">
+        <span class="cas-badge badge-done" data-en="DELIVERED">LIVRÉ</span>
+        <span class="cas-client">SICAM</span>
+        <h3 data-en="Digital strategy & brand content">Stratégie digitale & contenu de marque</h3>
+        <p data-en="Strategic digital study, communications support around the Zero Pesticide Residue program, partner content production.">Étude stratégique digitale, accompagnement communication autour du programme Zéro Résidu de Pesticides, production de contenu partenaire.</p>
+      </article>
+    </div>
+    <div class="refs reveal">
+      <p class="refs-label" data-en="Key account references">Références grands comptes</p>
+      <div class="refs-list">
+        <span>Ooredoo</span><span>Tunisie Telecom</span><span>Vermeg</span><span>Samsung</span><span>OMS</span><span>Nouvelair</span><span>BTL</span><span data-en="Public institutions">Institutions publiques</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEMOS ================= -->
+<section class="section" id="demos" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="See it in action">Voir en action</span>
+      <h2 data-en="Four AI agents, filmed in production">Quatre agents IA, filmés en action</h2>
+      <p data-en="No mockups. These are screen recordings of the actual systems: content agents, document analysis, chatbots and automated reporting.">Aucune maquette. Ce sont des captures d'écran des systèmes réels : agents de contenu, analyse documentaire, chatbots et reporting automatisé.</p>
+    </div>
+    <div class="demo-grid">
+
+      <article class="demo reveal">
+        <div class="demo-media">
+          <span class="cas-badge badge-live" data-en="● IN PRODUCTION">● EN PRODUCTION</span>
+          <video src="Assets/tn_agentic_promo.mp4" controls muted playsinline preload="auto" class="preview-video"></video>
+        </div>
+        <div class="demo-body">
+          <span class="cas-client">TN-Agentic · Tunisie Numérique</span>
+          <h3 data-en="Recurring content, written and published on its own">Vos contenus récurrents, écrits et publiés tout seuls</h3>
+          <p data-en="Weather, exchange rates, sector indicators, weekly recaps: bilingual AI journalist agents publish every day, without ever inventing a figure.">Météo, taux de change, indicateurs sectoriels, récaps hebdomadaires : des agents IA journalistes bilingues publient chaque jour, sans jamais inventer un chiffre.</p>
+          <div class="offre-proof" data-en="<b>138 articles</b> generated in the first month, all verified, under <b>$7</b> in AI cost."><b>138 articles</b> générés le premier mois, tous vérifiés, moins de <b>7 $</b> de coût IA.</div>
+        </div>
+      </article>
+
+      <article class="demo reveal">
+        <div class="demo-media">
+          <video src="Assets/profiler_promo.mp4" controls muted playsinline preload="auto" class="preview-video"></video>
+        </div>
+        <div class="demo-body">
+          <span class="cas-client" data-en="Profiler · Verbatim analysis">Profiler · Analyse de verbatims</span>
+          <h3 data-en="Your verbatims are a goldmine. We hand you the shovel.">Vos verbatims sont une mine d'or. Nous vous donnons la pelle.</h3>
+          <p data-en="CSV import, automatic multi-label classification, decision-ready dashboards. Local processing: your data never leaves your infrastructure.">Import CSV, classification multi-label automatique, dashboards prêts à décider. Traitement local : vos données ne quittent jamais votre infrastructure.</p>
+          <div class="offre-proof" data-en="<b>1,000 verbatims</b> classified in 90 seconds · <b>93%</b> average coverage across client corpora."><b>1 000 verbatims</b> classés en 90 secondes · <b>93 %</b> de couverture moyenne sur les corpus clients.</div>
+        </div>
+      </article>
+
+      <article class="demo reveal">
+        <div class="demo-media">
+          <span class="cas-badge badge-live" data-en="● IN PRODUCTION">● EN PRODUCTION</span>
+          <video src="Assets/TNChatbot_Promo.mp4" controls muted playsinline preload="auto" class="preview-video"></video>
+        </div>
+        <div class="demo-body">
+          <span class="cas-client">TNChatbot · Tunisie Numérique</span>
+          <h3 data-en="Custom AI chatbots — your documents, their intelligence">Chatbots IA sur mesure — vos documents, leur intelligence</h3>
+          <p data-en="PDFs, DOCX, FAQs, price lists: your documents become the chatbot's memory. Streaming responses, local LLM, zero API cost.">PDF, DOCX, FAQ, tarifs : vos documents deviennent la mémoire du chatbot. Réponses en streaming, LLM local, zéro coût API.</p>
+          <div class="offre-proof" data-en="Already in production: <b>TNChatbot</b> qualifies Tunisie Numérique's B2B advertisers.">Déjà en production : <b>TNChatbot</b> qualifie les annonceurs B2B de Tunisie Numérique.</div>
+        </div>
+      </article>
+
+      <article class="demo reveal">
+        <div class="demo-media">
+          <video src="Assets/agence_vu_promo.mp4" controls muted playsinline preload="auto" class="preview-video"></video>
+        </div>
+        <div class="demo-body">
+          <span class="cas-client" data-en="Automated activity reports">Bilans & synthèses d'activités</span>
+          <h3 data-en="Your clients generate data. You deliver decisions.">Vos clients génèrent des données. Vous leur livrez des décisions.</h3>
+          <p data-en="Excel, images, PDFs, questionnaires: every source ingested automatically. AI-generated narrative, reliability score checked before delivery.">Excel, images, PDF, questionnaires : toutes les sources sont ingérées automatiquement. Narratif généré par IA, score de fiabilité vérifié avant livraison.</p>
+          <div class="offre-proof" data-en="From several <b>days</b> of manual entry to under <b>5 minutes</b> of processing.">De plusieurs <b>jours</b> de saisie manuelle à moins de <b>5 minutes</b> de traitement.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTEURS ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Sectors">Secteurs</span>
+      <h2 data-en="Where operational AI pays off most">Là où l'IA opérationnelle rapporte le plus</h2>
+    </div>
+    <div class="secteurs-grid">
+      <div class="secteur reveal">
+        <h3 data-en="Banking & leasing">Banque & leasing</h3>
+        <p data-en="File processing, automated collections, document compliance, assisted scoring.">Traitement de dossiers, recouvrement automatisé, conformité documentaire, scoring assisté.</p>
+      </div>
+      <div class="secteur reveal">
+        <h3 data-en="Insurance">Assurance</h3>
+        <p data-en="Claims handling, pre-qualification, letters and endorsements production.">Gestion de sinistres, pré-qualification, production de courriers et d'avenants.</p>
+      </div>
+      <div class="secteur reveal">
+        <h3 data-en="Public sector">Secteur public & institutions</h3>
+        <p data-en="Intelligent digitization, citizen mail processing, case-handling support — with data sovereignty requirements.">Dématérialisation intelligente, traitement du courrier citoyen, aide à l'instruction — avec exigences de souveraineté des données.</p>
+      </div>
+      <div class="secteur reveal">
+        <h3 data-en="Media & communications">Médias & communication</h3>
+        <p data-en="Assisted production, publishing automation, programmatic monetization. Our home turf.">Production assistée, automatisation du publishing, monétisation programmatique. Notre terrain d'origine.</p>
+      </div>
+      <div class="secteur reveal">
+        <h3 data-en="Industry & agri-food">Industrie & agroalimentaire</h3>
+        <p data-en="Automated reporting, quality documentation, B2B communications.">Reporting automatisé, documentation qualité, communication B2B.</p>
+      </div>
+      <div class="secteur reveal">
+        <h3 data-en="Your sector?">Votre secteur ?</h3>
+        <p data-en="If a process is repetitive, document-heavy or time-consuming, it's a candidate. Let's talk.">Si un processus est répétitif, documentaire ou chronophage, c'est un candidat. Parlons-en.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROUPE ================= -->
+<section class="section" id="groupe" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="The group">Le groupe</span>
+      <h2 data-en="One group, two arms, one conviction">Un groupe, deux pôles, une conviction</h2>
+    </div>
+    <div class="groupe-grid">
+      <div class="pole pole-web reveal">
+        <span class="pole-tag" data-en="Consulting & technology arm">Pôle conseil & technologie</span>
+        <h3>MDweb</h3>
+        <p data-en="AI-augmented advisory, business agents, automation and RPA. Twenty years of digital projects for Tunisia's largest companies — refocused on what matters today: putting AI into production, reliably.">MOA augmentée IA, agents métier, automatisation et RPA. Vingt ans de projets digitaux pour les plus grandes entreprises tunisiennes — réorientés vers ce qui compte aujourd'hui : faire entrer l'IA en production, de façon fiable.</p>
+        <span class="lab-link" data-en="The expertise →">L'expertise →</span>
+      </div>
+      <div class="pole pole-tn reveal">
+        <span class="pole-tag" data-en="Media arm">Pôle média</span>
+        <h3>Tunisie Numérique</h3>
+        <p data-en="One of the first French-language Tunisian news portals, with a unique diaspora audience. Also our laboratory: every technology we offer clients is deployed here first, under real conditions.">L'un des premiers portails d'information tunisiens francophones, avec une audience diaspora unique. C'est aussi notre laboratoire : chaque technologie proposée à nos clients y est d'abord déployée en conditions réelles.</p>
+        <span class="lab-link" data-en="The proving ground →">Le laboratoire →</span>
+      </div>
+    </div>
+    <div class="conviction reveal" data-en="<b>Our conviction:</b> AI will not transform Tunisian companies through demos, but through processes in production — measured, audited, and owned by the teams. That is what we build. At home first, with our clients next."><b>Notre conviction :</b> l'IA ne transformera pas les entreprises tunisiennes par des démonstrations, mais par des processus en production — mesurés, audités, et appropriés par les équipes. C'est ce que nous construisons. Chez nous d'abord, chez nos clients ensuite.</div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="wrap reveal">
+    <span class="eyebrow inverse" style="color:#fff" data-en="Get started">Par où commencer</span>
+    <h2 data-en="An AI assessment of your processes. Two weeks. No strings attached.">Un diagnostic IA de vos processus. Deux semaines. Sans engagement.</h2>
+    <p data-en="Describe a process that costs you time or errors. We identify your 3 to 5 highest-return use cases, with estimated gains and a roadmap — whether or not you build with us afterwards.">Décrivez-nous un processus qui vous coûte du temps ou des erreurs. Nous identifions vos 3 à 5 cas d'usage à plus fort retour, avec estimation de gains et feuille de route — que vous construisiez ensuite avec nous ou non.</p>
+    <a href="mailto:contact@mdgroupe.tn?subject=Diagnostic%20IA" class="btn btn-light"><span data-en="Request an AI assessment">Demander un diagnostic IA</span> <span class="arrow">→</span></a>
+    <p class="cta-meta" data-en="contact@mdgroupe.tn · Tunis, Tunisia · Response within 48h">contact@mdgroupe.tn · Tunis, Tunisie · Réponse sous 48 h</p>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="md">md.</span><span class="grp">Groupe</span></div>
+        <p data-en="Operational AI for Tunisian and Maghreb companies. Advisory, integration, automation, media.">L'IA opérationnelle pour les entreprises tunisiennes et maghrébines. Conseil, intégration, automatisation, média.</p>
+      </div>
+      <div>
+        <h4 data-en="Services">Offres</h4>
+        <a href="#offres" data-en="Advisory & AI project ownership">Conseil & MOA augmentée</a>
+        <a href="#offres" data-en="Business AI agents">Agents IA métier</a>
+        <a href="#offres" data-en="Automation & RPA">Automatisation & RPA</a>
+        <a href="#offres" data-en="Media & audience">Média & audience</a>
+      </div>
+      <div>
+        <h4 data-en="The group">Le groupe</h4>
+        <a href="#groupe">MDweb</a>
+        <a href="https://www.tunisienumerique.com" target="_blank" rel="noopener">Tunisie Numérique</a>
+        <a href="#cas" data-en="Case studies">Réalisations</a>
+        <a href="#demos" data-en="Demos">Démos</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>contact@mdgroupe.tn</p>
+        <p data-en="Tunis, Tunisia">Tunis, Tunisie</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 md.Groupe</span>
+      <span data-en="Built with the tools we sell.">Construit avec les outils que nous vendons.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- i18n ---------- */
+let lang = 'fr';
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btn-fr').classList.toggle('active', l==='fr');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(!el.dataset.fr) el.dataset.fr = el.innerHTML;
+    el.innerHTML = (l==='en') ? el.dataset.en : el.dataset.fr;
+  });
+  startConsole(); // restart feed in new language
+}
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- marquee duplication ---------- */
+const track = document.getElementById('marquee-track');
+track.innerHTML += track.innerHTML;
+
+/* ---------- live production console ---------- */
+const FEED = {
+  fr: [
+    ['agent_meteo','article généré · 3 sources vérifiées','publié'],
+    ['newsletter','édition du soir compilée · 42 articles','envoyée'],
+    ['agent_devises','taux BCT récupérés · cohérence OK','publié'],
+    ['workflow_n8n','relances recouvrement · lot #142','exécuté'],
+    ['audio_gam','pre-roll servi · campagne diaspora','OK'],
+    ['agent_energie','prix carburants mis à jour · source officielle','publié'],
+    ['validation','sortie sensible → revue humaine demandée','en attente'],
+    ['monitoring','0 hallucination détectée · 24 h glissantes','OK'],
+    ['api_wordpress','217 articles indexés · GEO ready','sync'],
+    ['rapport_quotidien','KPIs compilés · envoyé à la direction','envoyé']
+  ],
+  en: [
+    ['weather_agent','article generated · 3 sources verified','published'],
+    ['newsletter','evening edition compiled · 42 articles','sent'],
+    ['forex_agent','central bank rates fetched · consistency OK','published'],
+    ['n8n_workflow','collection follow-ups · batch #142','executed'],
+    ['audio_gam','pre-roll served · diaspora campaign','OK'],
+    ['energy_agent','fuel prices updated · official source','published'],
+    ['validation','sensitive output → human review requested','pending'],
+    ['monitoring','0 hallucinations detected · rolling 24h','OK'],
+    ['wordpress_api','217 articles indexed · GEO ready','synced'],
+    ['daily_report','KPIs compiled · sent to management','sent']
+  ]
+};
+let feedTimer = null, feedIdx = 0;
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function timeStamp(offsetMin){
+  const d = new Date(Date.now() - offsetMin*60000);
+  return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+function makeLine(item, offsetMin){
+  const div = document.createElement('div');
+  div.className = 'log-line';
+  div.innerHTML = '<span class="log-time">'+timeStamp(offsetMin)+'</span>'
+    + '<span class="log-tag">'+item[0]+'</span>'
+    + '<span class="log-msg">'+item[1]+'</span>'
+    + '<span class="log-ok">✓ '+item[2]+'</span>';
+  return div;
+}
+function startConsole(){
+  const body = document.getElementById('console-body');
+  if(!body) return;
+  clearInterval(feedTimer);
+  body.innerHTML = '';
+  const feed = FEED[lang];
+  feedIdx = 0;
+  // seed with 6 lines
+  for(let i=5;i>=0;i--){
+    body.appendChild(makeLine(feed[(feedIdx++) % feed.length], i*3));
+  }
+  if(reduced) return; // static console for reduced motion
+  feedTimer = setInterval(()=>{
+    body.appendChild(makeLine(feed[(feedIdx++) % feed.length], 0));
+    while(body.children.length > 8) body.removeChild(body.firstChild);
+  }, 2600);
+}
+startConsole();
+
+/* ---------- close mobile menu on link click ---------- */
+document.querySelectorAll('#mmenu a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('mmenu').classList.remove('open'));
+});
+
+/* ---------- démos vidéo : afficher la première image au lieu d'un écran noir ---------- */
+document.querySelectorAll('.preview-video').forEach(function (video) {
+  var reveal = function () {
+    if (video.currentTime === 0) {
+      try { video.currentTime = 0.05; } catch (e) {}
+    }
+  };
+  video.addEventListener('loadeddata', reveal, { once: true });
+  video.addEventListener('loadedmetadata', reveal, { once: true });
+  if (video.readyState >= 2) reveal();
+});
+</script>
+</body>
+</html>
