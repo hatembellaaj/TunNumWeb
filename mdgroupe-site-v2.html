@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>md.Groupe — L'IA opérationnelle, pas l'IA promise</title>
 <meta name="description" content="md.Groupe accompagne les entreprises tunisiennes dans le passage à l'IA en production : conseil & MOA augmentée, agents IA métier, automatisation & RPA, média & audience.">
+<link rel="icon" type="image/png" href="Assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,8 +15,9 @@
   --paper-2:#EDEFEA;
   --ink:#0F1722;
   --ink-soft:#3C4655;
-  --cobalt:#1742E8;
-  --cobalt-deep:#0F2FB0;
+  --brand-red:#EF233C;
+  --brand-red-light:#FF7A8C;
+  --brand-red-deep:#C21B33;
   --live:#13A878;
   --line:#D8DCD4;
   --line-ink:rgba(15,23,34,.12);
@@ -39,7 +41,7 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--cobalt);color:#fff}
+::selection{background:var(--brand-red);color:#fff}
 a{color:inherit;text-decoration:none}
 img{max-width:100%}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -51,14 +53,14 @@ img{max-width:100%}
   font-weight:600;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--cobalt);
+  color:var(--brand-red);
   display:inline-flex;
   align-items:center;
   gap:10px;
 }
-.eyebrow::before{content:"";width:22px;height:2px;background:var(--cobalt);display:inline-block}
-.eyebrow.inverse{color:#8FA6FF}
-.eyebrow.inverse::before{background:#8FA6FF}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--brand-red);display:inline-block}
+.eyebrow.inverse{color:var(--brand-red-light)}
+.eyebrow.inverse::before{background:var(--brand-red-light)}
 h1,h2,h3{font-family:var(--display);line-height:1.12;letter-spacing:-.022em}
 h2{font-size:clamp(30px,4.2vw,46px);font-weight:700}
 .section{padding:104px 0}
@@ -72,12 +74,12 @@ h2{font-size:clamp(30px,4.2vw,46px);font-weight:700}
   padding:15px 26px;border-radius:999px;border:1.5px solid transparent;
   cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
 }
-.btn:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
-.btn-primary{background:var(--cobalt);color:#fff}
-.btn-primary:hover{background:var(--cobalt-deep);transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--brand-red);outline-offset:3px}
+.btn-primary{background:var(--brand-red);color:#fff}
+.btn-primary:hover{background:var(--brand-red-deep);transform:translateY(-2px)}
 .btn-ghost{border-color:var(--line-ink);color:var(--ink);background:transparent}
 .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
-.btn-light{background:#fff;color:var(--cobalt-deep)}
+.btn-light{background:#fff;color:var(--brand-red-deep)}
 .btn-light:hover{transform:translateY(-2px)}
 .arrow{transition:transform .18s ease}
 .btn:hover .arrow{transform:translateX(4px)}
@@ -90,9 +92,8 @@ header{
   border-bottom:1px solid var(--line);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{display:flex;align-items:baseline;gap:1px;font-size:21px}
-.logo .md{font-family:var(--mono);font-weight:600;color:var(--cobalt)}
-.logo .grp{font-family:var(--display);font-weight:700}
+.logo{display:flex;align-items:center}
+.logo img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
@@ -106,7 +107,7 @@ header{
   color:var(--ink-soft);font:inherit;transition:background .15s,color .15s;
 }
 .lang-toggle button.active{background:var(--ink);color:#fff}
-.lang-toggle button:focus-visible{outline:2px solid var(--cobalt);outline-offset:-2px}
+.lang-toggle button:focus-visible{outline:2px solid var(--brand-red);outline-offset:-2px}
 .nav .btn{padding:11px 20px;font-size:14px}
 .burger{display:none;border:none;background:none;cursor:pointer;padding:8px}
 .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:.2s}
@@ -118,10 +119,10 @@ header{
 .hero{padding:96px 0 90px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
 .hero h1{font-size:clamp(40px,5.4vw,66px);font-weight:800;margin:22px 0 24px}
-.hero h1 .accent{color:var(--cobalt);position:relative;white-space:nowrap}
+.hero h1 .accent{color:var(--brand-red);position:relative;white-space:nowrap}
 .hero h1 .accent::after{
   content:"";position:absolute;left:0;bottom:.04em;height:.09em;width:100%;
-  background:var(--cobalt);opacity:.22;border-radius:2px;
+  background:var(--brand-red);opacity:.22;border-radius:2px;
 }
 .hero-sub{font-size:19px;color:var(--ink-soft);max-width:520px;margin-bottom:36px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
@@ -158,7 +159,7 @@ header{
 .log-line{display:flex;gap:14px;padding:6.5px 0;border-bottom:1px dashed rgba(15,23,34,.07);opacity:0;animation:logIn .5s ease forwards}
 @keyframes logIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .log-time{color:#9AA3AF;flex-shrink:0}
-.log-tag{color:var(--cobalt);font-weight:600;flex-shrink:0;min-width:128px}
+.log-tag{color:var(--brand-red);font-weight:600;flex-shrink:0;min-width:128px}
 .log-msg{color:var(--ink-soft)}
 .log-ok{color:var(--live);font-weight:600;margin-left:auto;flex-shrink:0}
 .console-foot{
@@ -181,7 +182,7 @@ header{
 .constat h2{font-size:clamp(32px,4.8vw,56px);max-width:880px;margin-top:24px;font-weight:700}
 .constat h2 .strike{position:relative;color:#6B7686}
 .constat h2 .strike::after{content:"";position:absolute;left:-2%;top:54%;width:104%;height:3px;background:#6B7686;transform:rotate(-1.6deg)}
-.constat h2 .em{color:#fff;border-bottom:4px solid var(--cobalt)}
+.constat h2 .em{color:#fff;border-bottom:4px solid var(--brand-red)}
 .constat p{max-width:680px;margin-top:30px;color:#A9B2C0;font-size:18.5px}
 .constat strong{color:#fff;font-weight:600}
 
@@ -192,8 +193,8 @@ header{
   padding:36px 34px;display:flex;flex-direction:column;gap:16px;
   transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
-.offre:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.25);border-color:rgba(23,66,232,.4)}
-.offre-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt)}
+.offre:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.25);border-color:rgba(239,35,60,.4)}
+.offre-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-red)}
 .offre h3{font-size:23px;font-weight:700}
 .offre p{color:var(--ink-soft);font-size:16px}
 .offre ul{list-style:none;margin-top:4px}
@@ -201,7 +202,7 @@ header{
   font-size:15px;color:var(--ink-soft);padding:9px 0 9px 26px;position:relative;
   border-top:1px dashed rgba(15,23,34,.1);
 }
-.offre li::before{content:"→";position:absolute;left:0;color:var(--cobalt);font-family:var(--mono);font-weight:600}
+.offre li::before{content:"→";position:absolute;left:0;color:var(--brand-red);font-family:var(--mono);font-weight:600}
 .offre-proof{
   margin-top:auto;padding:13px 16px;border-radius:10px;background:var(--paper-2);
   font-size:14px;color:var(--ink-soft);border-left:3px solid var(--live);
@@ -216,7 +217,7 @@ header{
   padding:38px 0;border-top:1px solid var(--line-ink);
 }
 .step:last-child{border-bottom:1px solid var(--line-ink)}
-.step-num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--cobalt)}
+.step-num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--brand-red)}
 .step h3{font-size:24px;font-weight:700}
 .step p{color:var(--ink-soft);font-size:16.5px}
 
@@ -236,7 +237,7 @@ header{
   letter-spacing:.1em;padding:6px 12px;border-radius:999px;
 }
 .badge-live{background:rgba(19,168,120,.12);color:#0C8A61}
-.badge-done{background:rgba(23,66,232,.1);color:var(--cobalt-deep)}
+.badge-done{background:rgba(15,23,34,.08);color:var(--ink-soft)}
 .refs{margin-top:48px;padding-top:32px;border-top:1px solid var(--line)}
 .refs-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
 .refs-list{display:flex;flex-wrap:wrap;gap:12px 32px}
@@ -263,7 +264,7 @@ header{
   border:1.5px solid var(--line-ink);border-radius:var(--radius);padding:26px 26px;
   background:#fff;transition:border-color .2s ease,transform .2s ease;
 }
-.secteur:hover{border-color:rgba(23,66,232,.45);transform:translateY(-3px)}
+.secteur:hover{border-color:rgba(239,35,60,.45);transform:translateY(-3px)}
 .secteur h3{font-size:18px;font-weight:700;margin-bottom:8px}
 .secteur p{font-size:14.5px;color:var(--ink-soft)}
 
@@ -277,15 +278,15 @@ header{
 .pole-tn{background:#fff;border:1.5px solid var(--line-ink)}
 .pole-tn p{color:var(--ink-soft)}
 .pole-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.pole-web .pole-tag{color:#8FA6FF}
-.pole-tn .pole-tag{color:var(--cobalt)}
+.pole-web .pole-tag{color:var(--brand-red-light)}
+.pole-tn .pole-tag{color:var(--brand-red)}
 .pole h3{font-size:27px;font-weight:700}
 .pole p{font-size:16px}
 .lab-link{
-  margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--cobalt);
+  margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--brand-red);
   display:inline-flex;gap:8px;align-items:center;
 }
-.pole-web .lab-link{color:#8FA6FF}
+.pole-web .lab-link{color:var(--brand-red-light)}
 .conviction{
   margin-top:22px;padding:34px 38px;border-radius:var(--radius);
   background:var(--paper-2);border:1px dashed rgba(15,23,34,.2);
@@ -294,7 +295,7 @@ header{
 .conviction b{font-family:var(--display)}
 
 /* ---------- cta ---------- */
-.cta{background:var(--cobalt);color:#fff;padding:110px 0;position:relative;overflow:hidden}
+.cta{background:var(--brand-red);color:#fff;padding:110px 0;position:relative;overflow:hidden}
 .cta::before{
   content:"";position:absolute;inset:0;opacity:.14;
   background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
@@ -311,9 +312,11 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
 .footer-grid h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6B7686;margin-bottom:16px;font-weight:600}
 .footer-grid a,.footer-grid p{display:block;font-size:14.5px;padding:4px 0;color:#A9B2C0}
 .footer-grid a:hover{color:#fff}
-.footer-logo{font-size:22px;margin-bottom:12px;display:flex;gap:1px;align-items:baseline}
-.footer-logo .md{font-family:var(--mono);font-weight:600;color:#8FA6FF}
-.footer-logo .grp{font-family:var(--display);font-weight:700;color:#fff}
+.footer-logo{
+  display:inline-flex;align-items:center;background:#fff;
+  padding:9px 16px;border-radius:10px;margin-bottom:16px;
+}
+.footer-logo img{height:26px;width:auto;display:block}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#6B7686;flex-wrap:wrap;gap:10px}
 
 /* ---------- responsive ---------- */
@@ -345,7 +348,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
 <!-- ================= NAV ================= -->
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="md.Groupe — accueil"><span class="md">md.</span><span class="grp">Groupe</span></a>
+    <a class="logo" href="#top" aria-label="md.Groupe — accueil"><img src="Assets/logo.png" alt="md.Groupe"></a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#offres" data-en="Services">Offres</a>
       <a href="#methode" data-en="Method">Méthode</a>
@@ -699,7 +702,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><span class="md">md.</span><span class="grp">Groupe</span></div>
+        <div class="footer-logo"><img src="Assets/logo.png" alt="md.Groupe"></div>
         <p data-en="Operational AI for Tunisian and Maghreb companies. Advisory, integration, automation, media.">L'IA opérationnelle pour les entreprises tunisiennes et maghrébines. Conseil, intégration, automatisation, média.</p>
       </div>
       <div>
