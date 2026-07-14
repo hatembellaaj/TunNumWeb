@@ -168,6 +168,14 @@ header{
   display:flex;justify-content:space-between;background:#FBFCFA;
 }
 
+/* ---------- stats ---------- */
+.stats-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;padding:32px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{display:block;font-family:var(--display);font-size:32px;font-weight:800;color:var(--brand-red)}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--ink-soft);line-height:1.4}
+
 /* ---------- logos ---------- */
 .logos{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;background:var(--paper-2)}
 .logos-inner{display:flex;align-items:center;gap:18px}
@@ -284,6 +292,17 @@ header{
 .temoin-author b{display:block;font-size:14.5px;color:var(--ink);font-weight:700}
 .temoin-author span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:2px}
 
+/* ---------- confiance ---------- */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.trust-card{
+  border:1.5px solid var(--line-ink);border-radius:var(--radius);padding:28px 24px;
+  background:#fff;transition:border-color .2s ease,transform .2s ease;
+}
+.trust-card:hover{border-color:rgba(239,35,60,.4);transform:translateY(-3px)}
+.trust-card .ico{font-size:26px;margin-bottom:14px;display:block}
+.trust-card h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
+.trust-card p{font-size:14px;color:var(--ink-soft)}
+
 /* ---------- secteurs ---------- */
 .secteurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .secteur{
@@ -350,7 +369,11 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   .hero-grid{grid-template-columns:1fr;gap:48px}
   .offres-grid,.groupe-grid,.demo-grid,.temoin-grid{grid-template-columns:1fr}
   .sector-breakdown{flex-direction:column;align-items:flex-start}
-  .cas-grid,.secteurs-grid{grid-template-columns:1fr 1fr}
+  .cas-grid,.secteurs-grid,.trust-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-child(n+3){border-bottom:none}
   .step{grid-template-columns:70px 1fr;gap:18px}
   .step p{grid-column:2}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -360,7 +383,10 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   .burger{display:block}
 }
 @media(max-width:620px){
-  .cas-grid,.secteurs-grid{grid-template-columns:1fr}
+  .cas-grid,.secteurs-grid,.trust-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .stat{border-right:none!important;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:none}
   .section{padding:76px 0}
   .hero{padding:64px 0 70px}
   .logos-inner{flex-direction:column;align-items:flex-start}
@@ -382,6 +408,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
       <a href="#cas" data-en="Case studies">Réalisations</a>
       <a href="#demos" data-en="Demos">Démos</a>
       <a href="#temoignages" data-en="Testimonials">Témoignages</a>
+      <a href="#confiance" data-en="Trust">Confiance</a>
       <a href="#groupe" data-en="The group">Le groupe</a>
     </nav>
     <div class="nav-right">
@@ -401,6 +428,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
     <a href="#cas" data-en="Case studies">Réalisations</a>
     <a href="#demos" data-en="Demos">Démos</a>
     <a href="#temoignages" data-en="Testimonials">Témoignages</a>
+    <a href="#confiance" data-en="Trust">Confiance</a>
     <a href="#groupe" data-en="The group">Le groupe</a>
     <a href="#contact" data-en="Request an AI assessment">Demander un diagnostic IA</a>
   </nav>
@@ -436,6 +464,28 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
     </div>
   </div>
 </section>
+
+<!-- ================= STATS ================= -->
+<div class="stats-strip">
+  <div class="wrap stats-grid">
+    <div class="stat reveal">
+      <b>95%</b>
+      <span data-en="factual reliability on automatically generated content">de fiabilité factuelle sur les contenus générés automatiquement</span>
+    </div>
+    <div class="stat reveal">
+      <b>70%</b>
+      <span data-en="of drafting time saved on recurring reports and summaries">de temps de rédaction économisé sur les rapports et comptes rendus récurrents</span>
+    </div>
+    <div class="stat reveal">
+      <b>90%</b>
+      <span data-en="of client requests automatically pre-qualified">des demandes clients pré-qualifiées automatiquement</span>
+    </div>
+    <div class="stat reveal">
+      <b>60%</b>
+      <span data-en="reduction in content production cost">de réduction du coût de production de contenu</span>
+    </div>
+  </div>
+</div>
 
 <!-- ================= LOGOS ================= -->
 <div class="logos">
@@ -781,6 +831,39 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONFIANCE ================= -->
+<section class="section" id="confiance" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Trust & compliance">Confiance & conformité</span>
+      <h2 data-en="Your data, your rules">Vos données, vos règles</h2>
+      <p data-en="On-premise, private cloud or public cloud — the hosting model follows your constraints, never the other way around.">On-premise, cloud privé ou cloud public — c'est le mode d'hébergement qui s'adapte à vos contraintes, jamais l'inverse.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <span class="ico">🔒</span>
+        <h3 data-en="Sovereign hosting">Hébergement souverain</h3>
+        <p data-en="On-premise, Tunisian or European private cloud, or public cloud if you prefer — your data stays where you decide.">On-premise, cloud privé tunisien ou européen, ou cloud public si vous le souhaitez — vos données restent où vous le décidez.</p>
+      </div>
+      <div class="trust-card reveal">
+        <span class="ico">🛡️</span>
+        <h3 data-en="GDPR compliance">Conformité RGPD</h3>
+        <p data-en="Collection, processing and deletion of personal data aligned with the European data protection regulation.">Collecte, traitement et suppression des données personnelles alignés sur le règlement européen de protection des données.</p>
+      </div>
+      <div class="trust-card reveal">
+        <span class="ico">🤖</span>
+        <h3 data-en="Local LLM available">LLM local disponible</h3>
+        <p data-en="In-house hosted models (Ollama) for sensitive data — zero data sent to external APIs when your policy requires it.">Modèles hébergés en interne (Ollama) pour les données sensibles — zéro sortie vers des API externes si votre politique l'exige.</p>
+      </div>
+      <div class="trust-card reveal">
+        <span class="ico">📋</span>
+        <h3 data-en="Full auditability">Auditabilité complète</h3>
+        <p data-en="Logs, traceability and a reliability score on every AI output, available to review at any time.">Logs, traçabilité et score de fiabilité sur chaque sortie IA, consultables à tout moment.</p>
+      </div>
     </div>
   </div>
 </section>
