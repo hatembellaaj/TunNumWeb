@@ -260,6 +260,30 @@ header{
 .demo-body .demo-sub{color:var(--ink);font-weight:600;font-size:15.5px}
 .btn-sm{padding:11px 20px;font-size:14px;align-self:flex-start}
 
+/* ---------- témoignages ---------- */
+.sector-breakdown{
+  display:flex;align-items:center;gap:36px;flex-wrap:wrap;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 32px;margin-bottom:44px;
+}
+.sector-legend{display:flex;flex-direction:column;gap:11px}
+.sector-legend-item{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--ink-soft)}
+.sector-legend-item b{color:var(--ink);font-weight:600}
+.sector-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+.temoin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.temoin{
+  background:#fff;border:1.5px solid var(--line-ink);border-radius:var(--radius);
+  padding:30px 30px 26px;display:flex;flex-direction:column;gap:14px;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.temoin:hover{transform:translateY(-5px);box-shadow:0 22px 48px -26px rgba(15,23,34,.22)}
+.temoin-mark{font-family:var(--display);font-size:36px;font-weight:800;color:var(--brand-red);line-height:.6;opacity:.9}
+.temoin blockquote{margin:0;color:var(--ink-soft);font-size:15px;line-height:1.62}
+.temoin-author{margin-top:auto;padding-top:14px;border-top:1px dashed rgba(15,23,34,.1)}
+.temoin-author b{display:block;font-size:14.5px;color:var(--ink);font-weight:700}
+.temoin-author span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+
 /* ---------- secteurs ---------- */
 .secteurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .secteur{
@@ -324,7 +348,8 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
 /* ---------- responsive ---------- */
 @media(max-width:1000px){
   .hero-grid{grid-template-columns:1fr;gap:48px}
-  .offres-grid,.groupe-grid,.demo-grid{grid-template-columns:1fr}
+  .offres-grid,.groupe-grid,.demo-grid,.temoin-grid{grid-template-columns:1fr}
+  .sector-breakdown{flex-direction:column;align-items:flex-start}
   .cas-grid,.secteurs-grid{grid-template-columns:1fr 1fr}
   .step{grid-template-columns:70px 1fr;gap:18px}
   .step p{grid-column:2}
@@ -356,6 +381,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
       <a href="#methode" data-en="Method">Méthode</a>
       <a href="#cas" data-en="Case studies">Réalisations</a>
       <a href="#demos" data-en="Demos">Démos</a>
+      <a href="#temoignages" data-en="Testimonials">Témoignages</a>
       <a href="#groupe" data-en="The group">Le groupe</a>
     </nav>
     <div class="nav-right">
@@ -374,6 +400,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
     <a href="#methode" data-en="Method">Méthode</a>
     <a href="#cas" data-en="Case studies">Réalisations</a>
     <a href="#demos" data-en="Demos">Démos</a>
+    <a href="#temoignages" data-en="Testimonials">Témoignages</a>
     <a href="#groupe" data-en="The group">Le groupe</a>
     <a href="#contact" data-en="Request an AI assessment">Demander un diagnostic IA</a>
   </nav>
@@ -689,6 +716,102 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   </div>
 </section>
 
+<!-- ================= TEMOIGNAGES ================= -->
+<section class="section" id="temoignages" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-en="Testimonials">Témoignages</span>
+      <h2 data-en="Trusted across every sector">Une confiance qui traverse tous les secteurs</h2>
+      <p data-en="Public institutions, higher education, private companies, professional associations — the same rigor, whatever the project.">Institutions publiques, enseignement supérieur, entreprises privées, associations professionnelles — la même exigence, quel que soit le projet.</p>
+    </div>
+
+    <div class="sector-breakdown reveal">
+      <svg width="132" height="132" viewBox="0 0 140 140" role="img" aria-label="Répartition des témoignages par secteur">
+        <g transform="rotate(-90 70 70)">
+          <circle cx="70" cy="70" r="54" fill="none" stroke="var(--line)" stroke-width="20"></circle>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="var(--brand-red)" stroke-width="20" stroke-dasharray="96.94 242.35" stroke-dashoffset="0"></circle>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="var(--ink)" stroke-width="20" stroke-dasharray="96.94 242.35" stroke-dashoffset="-96.94"></circle>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="var(--ink-soft)" stroke-width="20" stroke-dasharray="96.94 242.35" stroke-dashoffset="-193.88"></circle>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#B9BEC7" stroke-width="20" stroke-dasharray="48.47 290.82" stroke-dashoffset="-290.82"></circle>
+        </g>
+      </svg>
+      <div class="sector-legend">
+        <span class="sector-legend-item"><span class="sector-dot" style="background:var(--brand-red)"></span><b data-en="2 · Public institutions">2 · Institutions publiques</b></span>
+        <span class="sector-legend-item"><span class="sector-dot" style="background:var(--ink)"></span><b data-en="2 · Higher education">2 · Enseignement supérieur</b></span>
+        <span class="sector-legend-item"><span class="sector-dot" style="background:var(--ink-soft)"></span><b data-en="2 · Private companies">2 · Entreprises privées</b></span>
+        <span class="sector-legend-item"><span class="sector-dot" style="background:#B9BEC7"></span><b data-en="1 · Professional association">1 · Association professionnelle</b></span>
+      </div>
+    </div>
+
+    <div class="temoin-grid">
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="Our collaboration with MDweb on the 2019 online public services barometer gave us a much better understanding of the state of e-government services, and later became the foundation for MEQUAES (www.mequaes.gov.tn), our system for evaluating online public services in Tunisia. It reflects a team that listens, masters every stage of an online survey, and truly understands the end client's needs.">La collaboration entre MDweb et l'unité de l'administration électronique à la présidence du gouvernement, dans le cadre du projet d'élaboration d'un baromètre des services en ligne en 2019, nous a permis d'avoir une meilleure compréhension de l'état des services publics en ligne, et nous a servi d'ébauche pour un nouveau projet visant l'évaluation de l'état des lieux des services en ligne en Tunisie, à travers le développement du système MEQUAES (www.mequaes.gov.tn). Cette collaboration reflète la capacité d'écoute d'une équipe compétente, maîtrisant toutes les étapes de la réalisation de l'enquête en ligne, son savoir-faire et sa parfaite compréhension des besoins et attentes du client final.</blockquote>
+        <div class="temoin-author">
+          <b>Sana Oueslati</b>
+          <span data-en="Public Services Advisor · E-Government Unit, Office of the Head of Government">Conseiller des services publics · Unité de l'administration électronique, Présidence du Gouvernement</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="The successful collaboration between MDweb and our ministry on the Tunisia e-commerce barometer initiative deserves recognition. It reflects sharp expertise, a clear understanding of our needs, and a team that mastered every stage of the online survey. The detailed results gave us a much better read on Tunisian online consumer behaviour.">La collaboration fructueuse entre MDweb et le Ministère du Commerce et du Développement des Exportations, dans le cadre de l'Initiative du baromètre du e-commerce en Tunisie, mérite d'être félicitée. Cette collaboration reflète un savoir-faire pointu, une parfaite compréhension des besoins, et une équipe compétente maîtrisant toutes les étapes de la réalisation de l'enquête en ligne. Les résultats détaillés nous ont permis d'avoir une meilleure perception du comportement du consommateur tunisien en ligne.</blockquote>
+        <div class="temoin-author">
+          <b>Khabbab Hadri</b>
+          <span data-en="Director General for E-Commerce and the Digital Economy · Ministry of Trade and Export Development">Directeur Général du commerce électronique et de l'économie immatérielle · Ministère du Commerce et du Développement des Exportations</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="We had the pleasure of working with MDweb on several strategic projects, including the MSC and UPSAT websites. Throughout, we valued their professionalism, responsiveness and ability to understand our needs. Their team proposed the right solutions, honoured every commitment, and provided quality support at each stage. This trust-based, efficient collaboration was a major factor in these projects' success.">Nous avons eu le plaisir de collaborer avec MDweb sur plusieurs projets stratégiques, notamment les sites MSC et UPSAT. Tout au long de ces réalisations, nous avons apprécié leur professionnalisme, leur réactivité et leur capacité à comprendre nos besoins. Leur équipe a su proposer des solutions adaptées, respecter les engagements pris et assurer un accompagnement de qualité à chaque étape du projet. Cette collaboration, basée sur la confiance et l'efficacité, a largement contribué à la réussite de ces projets.</blockquote>
+        <div class="temoin-author">
+          <b>Amira Chaouachi</b>
+          <span data-en="Head of Digital Applications · Honoris United Universities">Chef Service Applications Digitales · Honoris United Universities</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="The agency understood our needs and delivered a website that reflects our institution's image, for both future students and outside visitors. The result matches our reputation and expectations. Congratulations to the whole team for their responsiveness and availability.">L'agence a su répondre à nos besoins et nous fournir un site web adapté, à la fois pour l'image de notre institution et pour nos futurs étudiants et visiteurs externes. Le résultat est digne de notre réputation, de leur professionnalisme, et à la hauteur de nos attentes. Bravo à toute l'équipe pour sa réactivité et sa disponibilité.</blockquote>
+        <div class="temoin-author">
+          <b>Ilhem Mestiri</b>
+          <span data-en="Director General · UPSAT Group">Directrice Générale · Groupe UPSAT</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="Listening, adaptability and responsiveness were the hallmarks of our collaboration on an online ad post-test for a major retail chain in Tunisia. In short: a very high-quality service, sound advice and a highly professional execution. I strongly recommend md.Groupe for this type of project.">Écoute, adaptabilité et réactivité étaient les maîtres mots de notre collaboration pour la réalisation d'un post-test pub online pour le compte d'une enseigne de grande distribution en Tunisie. Bref, une prestation de très haute qualité, des conseils judicieux et une réalisation très professionnelle. Je conseille vivement de travailler avec md.Groupe pour ce type de projets.</blockquote>
+        <div class="temoin-author">
+          <b>Wissem Ben Salem Ghozzi</b>
+          <span data-en="CEO & Founder · Value">CEO & Fondatrice · Value</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="We were genuinely satisfied with the results of the study on medical studies statistics — a market still emerging in Tunisia. We commend the team's professionalism, punctuality and responsiveness.">Nous avons été vraiment satisfaits par les résultats de la mission menée sur les statistiques liées aux études médicales — un marché encore émergent en Tunisie. Nous saluons le professionnalisme, la ponctualité et la réactivité de l'équipe.</blockquote>
+        <div class="temoin-author">
+          <b>Aymen Bahri</b>
+          <span data-en="General Director · Med'In Outlook">Directeur Général · Med'In Outlook</span>
+        </div>
+      </article>
+
+      <article class="temoin reveal">
+        <span class="temoin-mark">"</span>
+        <blockquote data-en="We had the privilege of working with md.Groupe on several occasions, as part of national initiatives to deepen our understanding of Tunisia's e-commerce sector and its challenges. Their analyses, built on precise data and expert interpretation, were of outstanding quality and helped us map the sector accurately and outline effective solutions — a crucial contribution where sector-level information is rare and valuable.">Nous avons eu le privilège de collaborer avec md.Groupe à plusieurs reprises, dans le cadre d'initiatives nationales visant à approfondir notre compréhension du secteur du commerce électronique tunisien et de ses enjeux. Leurs analyses, fondées sur des données précises et une interprétation experte, ont été d'une qualité exceptionnelle et nous ont permis d'établir un état des lieux précis du secteur et de tracer des pistes de solutions efficaces. Un apport d'une importance cruciale, dans un contexte où les informations sectorielles sont rares et précieuses.</blockquote>
+        <div class="temoin-author">
+          <b>Khalil Talbi</b>
+          <span data-en="Former President · SEVAD-UTICA (E-Commerce &amp; Distance Selling Trade Association)">Ex-Président · SEVAD-UTICA (Chambre syndicale du commerce électronique et de la vente à distance)</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- ================= CTA ================= -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
@@ -722,6 +845,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
         <a href="https://www.tunisienumerique.com" target="_blank" rel="noopener">Tunisie Numérique</a>
         <a href="#cas" data-en="Case studies">Réalisations</a>
         <a href="#demos" data-en="Demos">Démos</a>
+        <a href="#temoignages" data-en="Testimonials">Témoignages</a>
       </div>
       <div>
         <h4>Contact</h4>
