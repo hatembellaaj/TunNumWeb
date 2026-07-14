@@ -314,17 +314,17 @@ header{
 .secteur p{font-size:14.5px;color:var(--ink-soft)}
 
 /* ---------- groupe ---------- */
-.groupe-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
+.groupe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
 .pole{
   border-radius:var(--radius);padding:42px 38px;display:flex;flex-direction:column;gap:16px;min-height:300px;
 }
 .pole-web{background:var(--ink);color:#EDEFF3}
 .pole-web p{color:#A9B2C0}
-.pole-tn{background:#fff;border:1.5px solid var(--line-ink)}
-.pole-tn p{color:var(--ink-soft)}
+.pole-light{background:#fff;border:1.5px solid var(--line-ink)}
+.pole-light p{color:var(--ink-soft)}
 .pole-tag{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .pole-web .pole-tag{color:var(--brand-red-light)}
-.pole-tn .pole-tag{color:var(--brand-red)}
+.pole-light .pole-tag{color:var(--brand-red)}
 .pole h3{font-size:27px;font-weight:700}
 .pole p{font-size:16px}
 .lab-link{
@@ -351,6 +351,18 @@ header{
 .cta p{margin:22px 0 38px;font-size:18.5px;max-width:640px;color:rgba(255,255,255,.85)}
 .cta-meta{margin-top:28px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.75)}
 
+.contact-form{max-width:620px;margin-top:34px}
+.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.contact-form .full{grid-column:1/-1}
+.contact-form label{display:block;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:6px;letter-spacing:.02em}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:13px 15px;border-radius:10px;border:none;
+  font-family:var(--body);font-size:15px;color:var(--ink);background:#fff;
+}
+.contact-form textarea{min-height:100px;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{outline:3px solid rgba(255,255,255,.5)}
+.contact-form button{margin-top:4px;border:none}
+
 /* ---------- footer ---------- */
 footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
@@ -367,9 +379,9 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
 /* ---------- responsive ---------- */
 @media(max-width:1000px){
   .hero-grid{grid-template-columns:1fr;gap:48px}
-  .offres-grid,.groupe-grid,.demo-grid,.temoin-grid{grid-template-columns:1fr}
+  .offres-grid,.demo-grid,.temoin-grid{grid-template-columns:1fr}
   .sector-breakdown{flex-direction:column;align-items:flex-start}
-  .cas-grid,.secteurs-grid,.trust-grid{grid-template-columns:1fr 1fr}
+  .cas-grid,.secteurs-grid,.trust-grid,.groupe-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
   .stat:nth-child(2n){border-right:none}
@@ -383,7 +395,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   .burger{display:block}
 }
 @media(max-width:620px){
-  .cas-grid,.secteurs-grid,.trust-grid{grid-template-columns:1fr}
+  .cas-grid,.secteurs-grid,.trust-grid,.groupe-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr}
   .stat{border-right:none!important;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
@@ -393,6 +405,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   .logos-label{border:none;padding:0 0 6px}
   .console{transform:none}
   .footer-grid{grid-template-columns:1fr}
+  .contact-form .form-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -660,7 +673,7 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
           <p class="demo-sub" data-en="Custom-built AI editorial agents for your organization. Bilingual. Verified. Traceable.">Des agents IA rédactionnels conçus sur mesure pour votre organisation. Bilingues. Vérifiés. Traçables.</p>
           <p data-en="Daily bulletins, market indicators, sector monitoring, weekly recaps — our intelligent agents collect your data, draft content in your editorial voice, and publish it automatically across your channels. No factual errors, no missed updates, no holidays skipped.">Bulletins quotidiens, indicateurs marchés, veilles sectorielles, récapitulatifs hebdomadaires — nos agents intelligents collectent vos données, rédigent le contenu à votre ligne éditoriale, et le publient automatiquement sur vos canaux. Sans erreur factuelle, sans oubli, sans jour férié.</p>
           <div class="offre-proof" data-en="<b>138 articles</b> generated in the first month, all verified, under <b>$7</b> in AI cost."><b>138 articles</b> générés le premier mois, tous vérifiés, moins de <b>7 $</b> de coût IA.</div>
-          <a href="mailto:contact@mdgroupe.tn?subject=Cadrage%20md.Agentic" class="btn btn-primary btn-sm"><span data-en="Book a scoping call">Prendre rendez-vous pour un cadrage</span> <span class="arrow">→</span></a>
+          <a href="#contact" class="btn btn-primary btn-sm"><span data-en="Book a scoping call">Prendre rendez-vous pour un cadrage</span> <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -746,20 +759,26 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow" data-en="The group">Le groupe</span>
-      <h2 data-en="One group, two arms, one conviction">Un groupe, deux pôles, une conviction</h2>
+      <h2 data-en="One group, three arms, one conviction">Un groupe, trois pôles, une conviction</h2>
     </div>
     <div class="groupe-grid">
       <div class="pole pole-web reveal">
         <span class="pole-tag" data-en="Consulting & technology arm">Pôle conseil & technologie</span>
         <h3>MDweb</h3>
         <p data-en="AI-augmented advisory, business agents, automation and RPA. Twenty years of digital projects for Tunisia's largest companies — refocused on what matters today: putting AI into production, reliably.">MOA augmentée IA, agents métier, automatisation et RPA. Vingt ans de projets digitaux pour les plus grandes entreprises tunisiennes — réorientés vers ce qui compte aujourd'hui : faire entrer l'IA en production, de façon fiable.</p>
-        <span class="lab-link" data-en="The expertise →">L'expertise →</span>
+        <a href="#offres" class="lab-link"><span data-en="The expertise">L'expertise</span> →</a>
       </div>
-      <div class="pole pole-tn reveal">
+      <div class="pole pole-light reveal">
         <span class="pole-tag" data-en="Media arm">Pôle média</span>
         <h3>Tunisie Numérique</h3>
         <p data-en="One of the first French-language Tunisian news portals, with a unique diaspora audience. Also our laboratory: every technology we offer clients is deployed here first, under real conditions.">L'un des premiers portails d'information tunisiens francophones, avec une audience diaspora unique. C'est aussi notre laboratoire : chaque technologie proposée à nos clients y est d'abord déployée en conditions réelles.</p>
-        <span class="lab-link" data-en="The proving ground →">Le laboratoire →</span>
+        <a href="https://www.tunisienumerique.com" target="_blank" rel="noopener" class="lab-link"><span data-en="The proving ground">Le laboratoire</span> →</a>
+      </div>
+      <div class="pole pole-light reveal">
+        <span class="pole-tag" data-en="Tech talent & staffing arm">Pôle ressources humaines tech</span>
+        <h3>Mind Box</h3>
+        <p data-en="On-demand access to qualified high-tech engineers, with no hiring commitment. A pool of Tunisian talent, remote-ready, to absorb your technical workload peaks.">Mise à disposition d'ingénieurs qualifiés en haute technologie, à la demande et sans engagement de recrutement. Un vivier de talents tunisiens, opérationnels à distance, pour absorber vos pics de charge technique.</p>
+        <a href="https://www.mindbox-int.com/" target="_blank" rel="noopener" class="lab-link"><span data-en="The talent pool">Le vivier de talents</span> →</a>
       </div>
     </div>
     <div class="conviction reveal" data-en="<b>Our conviction:</b> AI will not transform Tunisian companies through demos, but through processes in production — measured, audited, and owned by the teams. That is what we build. At home first, with our clients next."><b>Notre conviction :</b> l'IA ne transformera pas les entreprises tunisiennes par des démonstrations, mais par des processus en production — mesurés, audités, et appropriés par les équipes. C'est ce que nous construisons. Chez nous d'abord, chez nos clients ensuite.</div>
@@ -874,7 +893,36 @@ footer{padding:64px 0 44px;background:var(--ink);color:#A9B2C0}
     <span class="eyebrow inverse" style="color:#fff" data-en="Get started">Par où commencer</span>
     <h2 data-en="An AI assessment of your processes. Two weeks. No strings attached.">Un diagnostic IA de vos processus. Deux semaines. Sans engagement.</h2>
     <p data-en="Describe a process that costs you time or errors. We identify your 3 to 5 highest-return use cases, with estimated gains and a roadmap — whether or not you build with us afterwards.">Décrivez-nous un processus qui vous coûte du temps ou des erreurs. Nous identifions vos 3 à 5 cas d'usage à plus fort retour, avec estimation de gains et feuille de route — que vous construisiez ensuite avec nous ou non.</p>
-    <a href="mailto:contact@mdgroupe.tn?subject=Diagnostic%20IA" class="btn btn-light"><span data-en="Request an AI assessment">Demander un diagnostic IA</span> <span class="arrow">→</span></a>
+
+    <form class="contact-form" action="https://formsubmit.co/contact@mdgroupe.tn" method="POST">
+      <input type="hidden" name="_subject" value="Nouvelle demande — site md.Groupe">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <div class="form-row">
+        <div>
+          <label for="cf-name" data-en="Full name">Nom complet</label>
+          <input id="cf-name" type="text" name="Nom" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="cf-org" data-en="Company / organization">Entreprise / organisation</label>
+          <input id="cf-org" type="text" name="Organisation" autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="full">
+          <label for="cf-email" data-en="Email">E-mail</label>
+          <input id="cf-email" type="email" name="Email" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="full">
+          <label for="cf-msg" data-en="Describe your need">Décrivez votre besoin</label>
+          <textarea id="cf-msg" name="Message" required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-light"><span data-en="Send request">Envoyer la demande</span> <span class="arrow">→</span></button>
+    </form>
+
     <p class="cta-meta" data-en="contact@mdgroupe.tn · Tunis, Tunisia · Response within 48h">contact@mdgroupe.tn · Tunis, Tunisie · Réponse sous 48 h</p>
   </div>
 </section>
